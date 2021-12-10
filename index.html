@@ -1,0 +1,40 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Tacna</title>
+	<link rel="stylesheet" href="css/leaflet.css" />
+	<title>Tacna</title>
+	<h1>Iglesias y Templos en Tacna</h1>
+ <style>
+  #map { 
+  widh: 100px;
+  height: 500px; 
+  box-shadow: 5px 5px 5px #F8C471; }
+ </style>
+  </head>
+  <body>
+   <script src="js/leaflet.js"></script>
+   <script src="js/leaflet.wms.js"></script>
+
+   <div id ="map"> </div>
+ <script>
+ var map = L.map('map').
+setView([-18.014612, -70.251965], 
+18);
+ 
+var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <ahref="http://osm.org/copyright"> OpenStreetMap</a> contributor'
+}).addTo(map);
+
+L.control.scale().addTo(map);
+var wmsGeneral = L.tileLayer.wms("http://localhost:8080/geoserver/proyecto_webgis/wms?", {
+	   layers: "proyecto_webgis:capas_tacna",
+	   format: 'image/png',
+	   transparent: true,
+	   version: '1.1.1',
+	   attribution: "SENCICO"
+	}).addTo(map);
+
+ </script>
+ </body> 
+ </html>
